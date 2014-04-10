@@ -15,8 +15,27 @@ public class ExtendedQueueOfInt extends QueueOfInt
 
     @Override
     public int compareTo(QueueOfInt arg0) {
-        // TODO Auto-generated method stub
-        return 0;
+
+        if (equals(arg0)) {
+            return 0;
+        }
+        Node tem1 = front;
+        Node tem2 = arg0.front;
+        while (tem1 != null && tem2 != null) {
+            if (tem1.info > tem2.info) {
+                return -1;
+            }
+            if (tem1.info < tem2.info) {
+                return 1;
+            }
+
+            tem1 = tem1.next;
+            tem2 = tem2.next;
+        }
+        if (tem1 == null && tem2 != null) {
+            return 1; 
+        }
+        return -1;
     }
 
     @Override
@@ -29,16 +48,17 @@ public class ExtendedQueueOfInt extends QueueOfInt
             if (aux.info != aux2.info) {
                 return false;
             }
-            aux=aux.next;
-            aux2=aux2.next;
+            aux = aux.next;
+            aux2 = aux2.next;
         }
-        if (aux2 ==null &&aux==null) {
+        if (aux2 == null && aux == null) {
             return true;
         }
         return false;
-}
-@Override
-        public String toString() {
+    }
+
+    @Override
+    public String toString() {
         if (front == null) {
             return "<<";
         }
@@ -56,7 +76,7 @@ public class ExtendedQueueOfInt extends QueueOfInt
     }
 
     @Override
-        public ExtendedQueueOfInt clone() {
+    public ExtendedQueueOfInt clone() {
         ExtendedQueueOfInt extendedQueueOfInt = new ExtendedQueueOfInt();
         Node node = front;
         while (node != null) {
